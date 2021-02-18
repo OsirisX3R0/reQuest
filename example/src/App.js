@@ -1,19 +1,30 @@
 import React from 'react'
-import useHttp from '../../src/useHttp'
+// import ReQuest from '../../src/reQuest/ReQuest'
+import useReQuest from '../../src/useReQuest'
 import './css/style.css'
 
 const App = () => {
-    const [person, personLoading, personError, getPerson] = useHttp('https://swapi.dev/api/people/1', {returnJson: true})
+    // const reQuest = new ReQuest('https://swapi.dev/api/people/1')
+    // const ReQuest = reQuest.ReQuest
+
+    // const displayData = (
+    //     <ReQuest>
+    //         <ReQuest.Loading>Loading</ReQuest.Loading>
+    //         <ReQuest.Error>Error</ReQuest.Error>
+    //         <ReQuest.Loading>Loading</ReQuest.Loading>
+    //     </ReQuest>
+    // )
+    const [person, personLoading, personError, getPerson] = useReQuest('https://swapi.dev/api/people/1')
 
     const displayData = (
-        <pre className='container'>
+        <div className='container'>
             {personLoading
                 ? 'Loading'
                 : personError
                     ? personError
                     : person && JSON.stringify(person)}
                     
-        </pre>
+        </div>
     )
 
     return displayData

@@ -1,15 +1,16 @@
 import React from 'react'
+import UseReQuestDefaultProps from './UseReQuestDefaultProps'
 
-const defaultProps = {
+const defaultProps: UseReQuestDefaultProps = {
     returnJson: true,
-    runInitial: true,
-    
+    runInitial: true
 }
 
-const useReQuest = (url, fetchOpts = {}, opts = defaultProps) => {
-    const [data, setData] = React.useState(null)
-    const [loading, setLoading] = React.useState(false)
-    const [error, setError] = React.useState(null)
+const useReQuest = (url: string, fetchOpts: RequestInit = {}, opts: UseReQuestDefaultProps = defaultProps): 
+    [any, boolean, any, () => void] => {
+    const [data, setData] = React.useState<any>(null)
+    const [loading, setLoading] = React.useState<boolean>(false)
+    const [error, setError] = React.useState<any>(null)
 
     const { returnJson, runInitial } = opts
 

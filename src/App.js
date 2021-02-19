@@ -1,32 +1,38 @@
 import React from 'react'
-import ReQuest from './reQuest/reQuestProvider'
+import beautify from 'json-beautify'
+
+import ReQuest, { useReQuest } from '../'
+// import useReQuest from './reQuest/useReQuest'
 import './css/style.css'
 
 const App = () => {
-    // const reQuest = new ReQuest('https://swapi.dev/api/people/1')
-    // const ReQuest = reQuest.ReQuest
+    const formatResponse = resp => beautify(resp, null, 2, 80)
 
+    // Implementation with ReQuest compound component
     const displayData = (
         <div className='container'>
             <pre>
                 <ReQuest url='https://swapi.dev/api/people/1'>
-                    <ReQuest.Loading>{loading => loading && 'Loading'}</ReQuest.Loading>
+                    <ReQuest.Loading>{() => 'Loading...'}</ReQuest.Loading>
                     <ReQuest.Error>{err => err}</ReQuest.Error>
-                    <ReQuest.Loading>{data => JSON.stringify(data)}</ReQuest.Loading>
+                    <ReQuest.Done>{data => formatResponse(data)}</ReQuest.Done>
                 </ReQuest>
             </pre>
         </div>
     )
+
+    // Implementation with useReQuest hook
     // const [person, personLoading, personError, getPerson] = useReQuest('https://swapi.dev/api/people/1')
 
     // const displayData = (
     //     <div className='container'>
-    //         {personLoading
-    //             ? 'Loading'
-    //             : personError
-    //                 ? personError
-    //                 : person && JSON.stringify(person)}
-                    
+    //         <pre>
+    //             {personLoading
+    //                 ? 'Loading...'
+    //                 : personError
+    //                     ? personError
+    //                     : person && formatResponse(person)}
+    //         </pre>
     //     </div>
     // )
 

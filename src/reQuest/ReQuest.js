@@ -1,18 +1,21 @@
 import React from "react";
-import useReQuest from "../../src/useReQuest";
+import useReQuest from "./useReQuest";
 
 const ReQuestContext = React.createContext()
 
 const ReQuest = ({url, opts, children}) => {
     const [data, loading, error, getData] = useReQuest(url, opts)
+
+    // Actual logic
     // const [data, setData] = React.useState(null)
     // const [loading, setLoading] = React.useState(false)
     // const [error, setError] = React.useState(null)
 
-    // const { returnJson, ...fetchOpts } = opts
+    // const { returnJson, runInitial } = opts
 
     // React.useEffect(() => {
-    //     getData()
+    //     if (runInitial)
+    //         getData()
     // }, [])
 
     // const getData = () => {

@@ -1,2 +1,2 @@
-export { default } from './reQuestProvider'
+export { default } from './ReQuest'
 export { default as useReQuest } from './useReQuest'

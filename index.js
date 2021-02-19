@@ -1,3 +1,3 @@
-const { usePrevState } = require('./src/usePrevState')
+const ReQuest = require('./src/reQuest')
 
-module.exports = usePrevState
+module.exports = ReQuest

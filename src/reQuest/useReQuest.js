@@ -2,15 +2,16 @@ import React from 'react'
 
 const defaultProps = {
     returnJson: true,
-    runInitial: true
+    runInitial: true,
+    
 }
 
-const useReQuest = (url, opts = defaultProps) => {
+const useReQuest = (url, fetchOpts = {}, opts = defaultProps) => {
     const [data, setData] = React.useState(null)
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(null)
 
-    const { returnJson, runInitial, ...fetchOpts } = opts
+    const { returnJson, runInitial } = opts
 
     React.useEffect(() => {
         if (runInitial)

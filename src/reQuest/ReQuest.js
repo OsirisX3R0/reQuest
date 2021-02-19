@@ -3,8 +3,8 @@ import useReQuest from "./useReQuest";
 
 const ReQuestContext = React.createContext()
 
-const ReQuest = ({url, opts, children}) => {
-    const [data, loading, error, getData] = useReQuest(url, opts)
+const ReQuest = ({url, fetchOpts, opts, children}) => {
+    const [data, loading, error, getData] = useReQuest(url, fetchOpts, opts)
 
     // Actual logic
     // const [data, setData] = React.useState(null)

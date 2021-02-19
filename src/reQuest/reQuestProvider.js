@@ -41,19 +41,19 @@ const ReQuest = ({url, opts, children}) => {
 }
 
 const ReQuestLoading = ({children}) => {
-    const [loading] = React.useContext(ReQuestContext)
+    const {loading} = React.useContext(ReQuestContext)
 
     return loading ? children(loading) : ''
 }
 
 const ReQuestError = ({children}) => {
-    const [error] = React.useContext(ReQuestContext)
+    const {error} = React.useContext(ReQuestContext)
 
     return error ? children(error) : ''
 }
 
 const ReQuestDone = ({children}) => {
-    const [data, error, loading] = React.useContext(ReQuestContext)
+    const {data, error, loading} = React.useContext(ReQuestContext)
 
     return (data && !error && !loading) ? children(data) : ''
 }

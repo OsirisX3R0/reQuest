@@ -1,5 +1,5 @@
 import React from 'react'
-import UseReQuestDefaultProps from './UseReQuestDefaultProps'
+import UseReQuestDefaultProps from '../interfaces/UseReQuestDefaultProps'
 
 const defaultProps: UseReQuestDefaultProps = {
     returnJson: true,

@@ -1,9 +1,21 @@
 import React from "react";
-import useReQuest from "./useReQuest";
+import ReQuestComponent from "../interfaces/ReQuestComponent";
+import ReQuestComponentProps from "../interfaces/ReQuestComponentProps";
+import ReQuestContextValue from '../interfaces/ReQuestContextValue'
+import ReQuestProps from "../interfaces/ReQuestProps";
+import ReQuestProvider from "../interfaces/ReQuestProvider";
+import useReQuest from "../useReQuest/useReQuest";
 
-const ReQuestContext = React.createContext()
+const defaultValue = {
+    data: null,
+    loading: false,
+    error: null,
+    getData: () => true
+}
 
-const ReQuest = ({url, fetchOpts, opts, children}) => {
+const ReQuestContext = React.createContext<ReQuestContextValue>(defaultValue)
+
+const ReQuest: ReQuestProvider = ({url, fetchOpts, opts, children}: ReQuestProps) => {
     const [data, loading, error, getData] = useReQuest(url, fetchOpts, opts)
 
     // Actual logic
@@ -43,20 +55,20 @@ const ReQuest = ({url, fetchOpts, opts, children}) => {
     )
 }
 
-const ReQuestLoading = ({children}) => {
-    const {loading} = React.useContext(ReQuestContext)
+const ReQuestLoading: ReQuestComponent = ({children}: ReQuestComponentProps) => {
+    const {loading} = React.useContext<ReQuestContextValue>(ReQuestContext)
 
     return loading ? children(loading) : ''
 }
 
-const ReQuestError = ({children}) => {
-    const {error} = React.useContext(ReQuestContext)
+const ReQuestError: ReQuestComponent = ({children}: ReQuestComponentProps) => {
+    const {error} = React.useContext<ReQuestContextValue>(ReQuestContext)
 
     return error ? children(error) : ''
 }
 
-const ReQuestDone = ({children}) => {
-    const {data, error, loading} = React.useContext(ReQuestContext)
+const ReQuestDone: ReQuestComponent = ({children}: ReQuestComponentProps) => {
+    const {data, error, loading} = React.useContext<ReQuestContextValue>(ReQuestContext)
 
     return (data && !error && !loading) ? children(data) : ''
 }
